@@ -18,13 +18,16 @@
 - Ruh hâli ve günlük notları
 - Yıldız Avcısı ve Ruhunun Rengi mini oyunları
 - Başarım ilerlemesi, tema, oyuncu adı ve sıfırlama onayı
+- Sunucu tarafında doğrulanan yıldız, kristal, XP ve mevsim pulu ekonomisi; 1–100 seviye eğrisi ve seviye dönüm noktaları
+- Görev/başarım ödüllerinde yinelenen hak talebini önleyen kayıtlar, atomik mağaza alışverişleri ve salt eklemeli işlem defteri
+- Filtrelenebilir işlem geçmişi; yalnızca yerel geliştirme adresinde açılan, gerçek oyun kaydına dokunmayan ekonomi simülatörü
 - Tarayıcıda otomatik kayıt; Supabase açıksa hesap ekranı olmadan özel bulut kaydı
 
 Ay Işığı Bulmacası henüz oynanabilir değil; arayüzde yakında olarak gösterilir. Hesap kurtarma olmadığı için anonim oturum verileri tarayıcı verileri temizlenirse veya başka cihaza geçilirse taşınamaz.
 
 ## Supabase
 
-`supabase-config.js`, tarayıcıda kullanılabilen proje URL'sini ve **publishable** anahtarını içerir. Gizli/service-role anahtarı içermez. Tablo ve RLS tanımları `supabase/migrations/202611160001_littleverse_player_saves.sql` dosyasındadır. Anonim oturum (e-posta/parola istemeyen) özelliği Supabase projesinde açıksa kayıtlar kullanıcıya özel `player_saves` tablosuna eşitlenir. Değilse uygulama otomatik olarak bu cihazdaki yerel kaydı kullanır.
+`supabase-config.js`, tarayıcıda kullanılabilen proje URL'sini ve **publishable** anahtarını içerir. Gizli/service-role anahtarı içermez. Şema/RLS tanımları sırasıyla `supabase/migrations/202611160001_littleverse_player_saves.sql`, `202611160002_littleverse_economy.sql`, `202611160003_littleverse_economy_hardening.sql` ve `202611160004_littleverse_xp_function_search_path.sql` dosyalarındadır. `supabase/functions/economy/index.ts` kimliği doğrulanmış Edge Function'dır. Anonim oturum (e-posta/parola istemeyen) özelliği Supabase projesinde açıksa oyun kaydı kullanıcıya özel `player_saves` tablosuna eşitlenir; cüzdan, sahiplik, ödül ve işlem defteri ise yalnızca ekonomi RPC'sinden değiştirilir. Bağlantı yoksa oyun ekranları ve yerel notlar açılır; ekonomi eylemleri sunucuya ulaşana dek bekletilir. Eski tarayıcı kayıtları ilk güvenli oturumda bir defa içe alınır, ekonomi alanları daha sonra istemciden bulut kayıtlarına yazılmaz. Günlük içerikleri buluta aktarılmaz.
 
 ## Çalıştırma
 
@@ -32,7 +35,6 @@ Uygulama bir derleme adımı gerektirmez. `index.html` statik bir web sunucusund
 
 ## Smoke kontrolleri
 
-Node.js bulunan bir geliştirme ortamında `node tests/smoke.mjs` komutu; gezinme, yıldızla dünya açma, keşif noktaları ve dünya günlük görev ödülleri, özel dünya hatıralarının envantere eklenmesi, oda/gardırop satın alımları, oda düzenleme ve geri yükleme, karakter görünüşü, günlük kaydı, sürpriz ödülü ve sıfırlama onayını kontrol eder.
-
+Node.js bulunan bir geliştirme ortamında `node --check app.js` ve `node tests/smoke.mjs` komutları söz dizimini, bütün ana ekranların açılmasını, işlem geçmişi filtrelerini ve ekonomi istemci sözleşmesinin güvenlik özelliklerini kontrol eder. Veritabanında ayrıca yinelenen ödül/alışveriş, yetersiz bakiye, sahip olunmayan eşyayı kuşanma, sıfırın altına düşen bakiye ve değiştirilemez defter senaryoları işlemi geri alan bir SQL denemesiyle doğrulanmıştır.
 
 

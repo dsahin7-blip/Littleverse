@@ -3,4 +3,3 @@ window.LITTLEVERSE_SUPABASE = {
   url: "https://vnadvvypaxhstmjrunep.supabase.co",
   anonKey: "sb_publishable_0AwEAZ7YNvMyRXDUTBYWqw_LWHkTuzS"
 };
-
