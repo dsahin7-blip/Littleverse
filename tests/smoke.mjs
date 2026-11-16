@@ -34,7 +34,7 @@ assert.match(node('#view').innerHTML,/Mevsimlik dilekler/,'seasonal challenges r
 click('rewards');
 for (const label of ['Tümü','Kazanılan','Harcanan','Ödüller','Alışverişler','Düzeltmeler']) assert.ok(node('#view').innerHTML.includes(label),'transaction filter '+label+' renders');
 assert.doesNotMatch(node('#view').innerHTML,/İşlem deneme alanı/,'developer simulator stays hidden outside localhost');
-const app = fs.readFileSync('app.js','utf8'), sql = fs.readFileSync('supabase/migrations/202611160002_littleverse_economy.sql','utf8');
+const app = fs.readFileSync('app.js','utf8'), sql = fs.readFileSync('supabase/migrations/202611160002_littleverse_economy.sql','utf8'), hardening = fs.readFileSync('supabase/migrations/202611160005_littleverse_idempotent_economy_events.sql','utf8'), rewardGuards = fs.readFileSync('supabase/migrations/202611160006_littleverse_reward_validation_hardening.sql','utf8');
 assert.match(app,/functions\/v1\/economy/,'economy uses the authenticated server endpoint');
 assert.match(app,/economyReady/,'currency actions wait for economy initialization');
 assert.match(app,/localStorage\.setItem\(STORE,JSON\.stringify\(state\)\)/,'non-economy game progress persists locally');
@@ -45,5 +45,11 @@ assert.match(sql,/check \(crystals >= 0\)/i,'crystal balance cannot go negative'
 assert.match(sql,/unique\(user_id,idempotency_key\)/i,'transaction retries are idempotent');
 assert.match(sql,/primary key\(user_id,claim_key\)/i,'reward claims reject duplicates');
 assert.match(sql,/p_level integer/,'level progression is implemented in the database');
+assert.match(app,/event_id:crypto\.randomUUID\(\)/,'progress is sent with an idempotent event key');
+assert.match(hardening,/primary key\(user_id,event_key\)/i,'server rejects duplicate progress events');
+assert.match(hardening,/DAILY_CAP_REACHED/,'server caps daily progress events');
+assert.match(hardening,/world-unlock:/,'server checks access before world rewards');
+assert.match(rewardGuards,/world-first:/,'server requires a first visit before world rewards');
+assert.match(rewardGuards,/world-quest:%/,'world quests require their real discovery');
 assert.match(fs.readFileSync('index.html','utf8'),/economy\.css/,'transaction history has a dedicated responsive design layer');
 console.log('Littleverse route and economy contract checks passed.');
