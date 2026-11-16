@@ -27,7 +27,7 @@ Ay Işığı Bulmacası henüz oynanabilir değil; arayüzde yakında olarak gö
 
 ## Supabase
 
-`supabase-config.js`, tarayıcıda kullanılabilen proje URL'sini ve **publishable** anahtarını içerir. Gizli/service-role anahtarı içermez. Şema/RLS tanımları sırasıyla `supabase/migrations/202611160001_littleverse_player_saves.sql`, `202611160002_littleverse_economy.sql`, `202611160003_littleverse_economy_hardening.sql`, `202611160004_littleverse_xp_function_search_path.sql`, `202611160005_littleverse_idempotent_economy_events.sql` ve `202611160006_littleverse_reward_validation_hardening.sql` dosyalarındadır. `supabase/functions/economy/index.ts` kimliği doğrulanmış Edge Function'dır. Anonim oturum (e-posta/parola istemeyen) özelliği Supabase projesinde açıksa oyun kaydı kullanıcıya özel `player_saves` tablosuna eşitlenir; cüzdan, sahiplik, ödül ve işlem defteri ise yalnızca ekonomi RPC'sinden değiştirilir. Bağlantı yoksa oyun ekranları ve yerel notlar açılır; ekonomi eylemleri sunucuya ulaşana dek bekletilir. Eski tarayıcı kayıtları ilk güvenli oturumda bir defa içe alınır, ekonomi alanları daha sonra istemciden bulut kayıtlarına yazılmaz. Günlük içerikleri buluta aktarılmaz.
+`supabase-config.js`, tarayıcıda kullanılabilen proje URL'sini ve **publishable** anahtarını içerir. Gizli/service-role anahtarı içermez. Şema/RLS tanımları sırasıyla `supabase/migrations/202611160001_littleverse_player_saves.sql` ile `202611160009_littleverse_early_duplicate_rejection.sql` arasındaki numaralı dosyalardadır. `supabase/functions/economy/index.ts` kimliği doğrulanmış Edge Function'dır. Anonim oturum (e-posta/parola istemeyen) özelliği Supabase projesinde açıksa oyun kaydı kullanıcıya özel `player_saves` tablosuna eşitlenir; cüzdan, sahiplik, ödül ve işlem defteri ise yalnızca ekonomi RPC'sinden değiştirilir. Bağlantı yoksa oyun ekranları ve yerel notlar açılır; ekonomi eylemleri sunucuya ulaşana dek bekletilir. Eski tarayıcı kayıtları ilk güvenli oturumda bir defa içe alınır, ekonomi alanları daha sonra istemciden bulut kayıtlarına yazılmaz. Günlük içerikleri buluta aktarılmaz.
 
 ## Çalıştırma
 
@@ -35,6 +35,6 @@ Uygulama bir derleme adımı gerektirmez. `index.html` statik bir web sunucusund
 
 ## Smoke kontrolleri
 
-Node.js bulunan bir geliştirme ortamında `node --check app.js` ve `node tests/smoke.mjs` komutları söz dizimini, bütün ana ekranların açılmasını, işlem geçmişi filtrelerini ve ekonomi istemci sözleşmesinin güvenlik özelliklerini kontrol eder. Veritabanında ayrıca yinelenen olay/ödül/alışveriş, günlük olay sınırı, kilitli dünya buluntusu, yetersiz bakiye, sahip olunmayan eşyayı kuşanma, sıfırın altına düşen bakiye ve değiştirilemez defter senaryoları işlemi geri alan bir SQL denemesiyle doğrulanmıştır.
+Node.js bulunan bir geliştirme ortamında `node --check app.js` ve `node tests/smoke.mjs` komutları söz dizimini, bütün ana ekranların açılmasını, işlem geçmişi filtrelerini ve ekonomi istemci sözleşmesinin güvenlik özelliklerini kontrol eder. Veritabanında ayrıca yinelenen olay/ödül/alışveriş, günlük olay sınırı, atomik dünya açılışı ve ilk ziyaret armağanı, kilitli dünya buluntusu, yetersiz bakiye, sahip olunmayan eşyayı kuşanma, sıfırın altına düşen bakiye ve değiştirilemez defter senaryoları işlemi geri alan SQL denemeleriyle doğrulanmıştır.
 
 
