@@ -9,7 +9,9 @@
 - Etkileşimli yatak odası, bahçe ve balkon düzenleyicisi; 40+ çizimli eşya, dokunarak yerleştirme ve sürükleyerek taşıma
 - Yataklar, koltuklar, masalar, raflar, halılar, ışıklar, bitkiler, duvar sanatı, dekorasyon, bahçe/balkon parçaları, duvar rengi/kâğıdı ve zemin seçenekleri
 - Oda eşyası mağazası, yıldız/kristal ile satın alma, görevle açılan özel parçalar, oda düzeni kaydetme ve geri yükleme
-- Keşfedilebilir ve seviyeye bağlı açılan dünyalar
+- Altı özgün fantastik dünya: iki başlangıç dünyası, XP/yıldız/başarımlarla açılan dört yeni kapı
+- Her dünyada çizimli kapak, atmosfer, dünya seviyesi, keşif ilerlemesi, üç özel buluntu, gizli noktalar ve iki günlük görev
+- 18 dünya hatırası ortak koleksiyona, keşif deneyimi mevcut seviye/XP sistemine eklenir
 - Ayrıntılı karakter oluşturucu: yüz, ten, ifade, saç, göz, kıyafet ve beş aksesuar alanı; canlı çizimli ön izleme
 - 66 görünüş parçası, dört nadirlik seviyesi, sahip olunan/kilitli gardırop, yıldız/kristal ile açma, rastgele görünüş ve kalıcı görünüş kaydı
 - Koleksiyon, mağaza, satın alma ve oyun içi bakiye
@@ -18,7 +20,7 @@
 - Başarım ilerlemesi, tema, oyuncu adı ve sıfırlama onayı
 - Tarayıcıda otomatik kayıt; Supabase açıksa hesap ekranı olmadan özel bulut kaydı
 
-Bulmaca oyunu ve daha yüksek seviyelerde açılan bazı dünyalar bu sürümde henüz oynanabilir değil; arayüzde kilitli/yakında olarak gösterilir. Hesap kurtarma olmadığı için anonim oturum verileri tarayıcı verileri temizlenirse veya başka cihaza geçilirse taşınamaz.
+Ay Işığı Bulmacası henüz oynanabilir değil; arayüzde yakında olarak gösterilir. Hesap kurtarma olmadığı için anonim oturum verileri tarayıcı verileri temizlenirse veya başka cihaza geçilirse taşınamaz.
 
 ## Supabase
 
@@ -30,5 +32,7 @@ Uygulama bir derleme adımı gerektirmez. `index.html` statik bir web sunucusund
 
 ## Smoke kontrolleri
 
-Node.js bulunan bir geliştirme ortamında `node tests/smoke.mjs` komutu; gezinme, görev ödülü ve açılan özel oda eşyası, mağaza/gardırop/oda eşyası satın alımı, oda düzenleme ve geri yükleme, karakter görünüşü, günlük kaydı, sürpriz ödülü ve sıfırlama onayını kontrol eder.
+Node.js bulunan bir geliştirme ortamında `node tests/smoke.mjs` komutu; gezinme, yıldızla dünya açma, keşif noktaları ve dünya günlük görev ödülleri, özel dünya hatıralarının envantere eklenmesi, oda/gardırop satın alımları, oda düzenleme ve geri yükleme, karakter görünüşü, günlük kaydı, sürpriz ödülü ve sıfırlama onayını kontrol eder.
+
+
 
