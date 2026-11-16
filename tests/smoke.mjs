@@ -58,5 +58,8 @@ const worldFirst = fs.readFileSync('supabase/migrations/202611160008_littleverse
 const claimGuards = fs.readFileSync('supabase/migrations/202611160009_littleverse_early_duplicate_rejection.sql','utf8');
 assert.match(worldFirst,/world-first:'\|\|v_unlock_id/,'unlocking a world grants the first-visit reward atomically');
 assert.ok(claimGuards.indexOf('ALREADY_CLAIMED')<claimGuards.indexOf("v_claim.reward_key like 'world-point:%'"),'duplicate claims are rejected before progress validation');
+const importCaps = fs.readFileSync('supabase/migrations/202611160010_littleverse_legacy_import_caps.sql','utf8');
+assert.match(importCaps,/least\(10000,greatest\(0,coalesce\(\(p_payload->>'stars'/,'legacy star imports are bounded');
+assert.match(importCaps,/least\(35487,greatest\(0,coalesce\(\(p_payload->>'xp_total'/,'legacy XP migration respects the old level cap');
 assert.match(fs.readFileSync('index.html','utf8'),/economy\.css/,'transaction history has a dedicated responsive design layer');
 console.log('Littleverse route and economy contract checks passed.');
