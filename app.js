@@ -228,6 +228,8 @@
     tapsDate:new Date().toLocaleDateString('en-CA'), quizDone:false, roomTab:'Yataklar', roomMode:'oda', roomView:'dekorasyon',roomLayouts:JSON.parse(JSON.stringify(ROOM_DEFAULT_LAYOUTS)),roomStyle:JSON.parse(JSON.stringify(ROOM_DEFAULT_STYLE)),roomSelectedItem:null,roomMovingIndex:null,roomQuestUnlocks:[],roomSaved:true,roomSavedLayout:null,roomSavedStyle:null,nameChanged:false
   });
   let state = readLocal();
+  if(state.mood==='Meraklı')state.mood='Heyecanlı';
+  state.diary=(Array.isArray(state.diary)?state.diary:[]).map(entry=>entry?.mood==='Meraklı'?{...entry,mood:'Heyecanlı',emoji:'✨'}:entry);
   state.avatarOwned=[...new Set([...(state.avatarOwned||[]),...(state.owned||[]).filter(id=>AVATAR_ITEMS.some(item=>item.id===id))])];
   state.lifetime={starTaps:0,diaryEntries:Array.isArray(state.diary)?state.diary.filter(entry=>!entry.sample).length:0,worldVisits:Array.isArray(state.visited)?state.visited.length:0,discoveries:Object.values(state.worldProgress||{}).reduce((n,p)=>n+(p.discoveries||[]).length,0),purchases:0,decorations:Object.values(state.roomLayouts||{}).reduce((n,p)=>n+p.length,0),earnedStars:0,earnedCrystals:0,worldRelics:(state.owned||[]).filter(id=>WORLD_REWARDS.some(item=>item.id===id)).length,dailyClaims:0,questClaims:0,quizzes:0,loginDays:0,perfectDays:0,...(state.lifetime||{})};
   if(!Array.isArray(state.quests)||state.quests.length!==QUEST_SEED.length)state.quests=blankQuests(QUEST_SEED);
