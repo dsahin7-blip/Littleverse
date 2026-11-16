@@ -8,7 +8,8 @@
 - Görev ilerlemesi ve ödül toplama
 - Sığınak görünümü ve sahip olunan eşyaları seçme
 - Keşfedilebilir ve seviyeye bağlı açılan dünyalar
-- Karakter görünümü ve kıyafet/aksesuar seçimi
+- Ayrıntılı karakter oluşturucu: yüz, ten, ifade, saç, göz, kıyafet ve beş aksesuar alanı; canlı çizimli ön izleme
+- 66 görünüş parçası, dört nadirlik seviyesi, sahip olunan/kilitli gardırop, yıldız/kristal ile açma, rastgele görünüş ve kalıcı görünüş kaydı
 - Koleksiyon, mağaza, satın alma ve oyun içi bakiye
 - Ruh hâli ve günlük notları
 - Yıldız Avcısı ve Ruhunun Rengi mini oyunları
@@ -27,5 +28,5 @@ Uygulama bir derleme adımı gerektirmez. `index.html` statik bir web sunucusund
 
 ## Smoke kontrolleri
 
-Node.js bulunan bir geliştirme ortamında `node tests/smoke.mjs` komutu; gezinme, görev ödülü, mağaza satın alımı, bahçe seçimi, günlük kaydı, sürpriz ödülü ve sıfırlama onayını kontrol eder.
+Node.js bulunan bir geliştirme ortamında `node tests/smoke.mjs` komutu; gezinme, görev ödülü, mağaza ve gardırop satın alımları, karakter görünüşünü kaydetme/rastgeleleştirme, bahçe seçimi, günlük kaydı, sürpriz ödülü ve sıfırlama onayını kontrol eder.
 
