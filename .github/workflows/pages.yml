@@ -3,13 +3,6 @@ name: Littleverse'i yayınla
 on:
   push:
     branches: [main]
-    paths:
-      - 'index.html'
-      - 'app.js'
-      - 'styles.css'
-      - 'garden.css'
-      - 'supabase-config.js'
-      - '.github/workflows/pages.yml'
   workflow_dispatch:
 
 permissions:
