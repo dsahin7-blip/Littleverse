@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f7f1ff" />
+  <meta name="description" content="Littleverse — Kendine ait küçük bir dünya." />
+  <title>Littleverse — Sana ait küçük bir dünya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="garden.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Ana menü">
+      <a class="brand" href="#home" data-route="home" aria-label="Littleverse ana sayfa">
+        <span class="brand-mark">✦</span><span class="brand-type">little<span>verse</span><small>SANA AİT KÜÇÜK BİR DÜNYA</small></span>
+      </a>
+      <div class="side-label">DÜNYAM</div>
+      <nav class="primary-nav" id="primary-nav"></nav>
+      <div class="sidebar-bottom">
+        <div class="side-note"><span class="note-moon">☾</span><p>Her gün, yeni bir<br /><strong>küçük mucize.</strong></p><span class="note-stars">✧ · ✦</span></div>
+        <button class="nav-link" data-route="settings"><span class="nav-icon">⚙</span><span>Ayarlar</span></button>
+        <div class="sidebar-user"><div class="avatar-mini">🌙</div><div><strong id="sidebar-name">Luna</strong><small>Yıldız toplayıcısı</small></div><button class="dots" data-route="settings" aria-label="Profil ayarları">···</button></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">✦</span><span>little<span>verse</span></span></div>
+        <div class="breadcrumb"><span>Benim dünyam</span><span class="crumb-dot">✧</span><strong id="current-section">Ana Sayfa</strong></div>
+        <div class="topbar-right">
+          <div class="currency-pill star-pill"><span>✦</span><strong id="top-stars">240</strong><small>yıldız</small></div>
+          <div class="currency-pill crystal-pill"><span>✧</span><strong id="top-crystals">18</strong><small>kristal</small></div>
+          <button class="icon-button notification-button" id="surprise-shortcut" aria-label="Günlük sürpriz">♧<i></i></button>
+          <button class="top-avatar" data-route="character" aria-label="Karakterim">🌙</button>
+        </div>
+      </header>
+      <div id="view" class="view"></div>
+      <footer class="footer-note">Littleverse <span>✦</span> Küçük anların büyülü hâli</footer>
+    </main>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobil menü"></nav>
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
