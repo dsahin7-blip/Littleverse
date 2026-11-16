@@ -25,3 +25,7 @@ Bulmaca oyunu ve daha yüksek seviyelerde açılan bazı dünyalar bu sürümde 
 
 Uygulama bir derleme adımı gerektirmez. `index.html` statik bir web sunucusundan sunulduğunda bütün arayüz özellikleri çalışır. Yazı tipleri çevrim içi Google Fonts üzerinden yüklenir; bağlantı yoksa sistem yazı tipleri kullanılır.
 
+## Smoke kontrolleri
+
+Node.js bulunan bir geliştirme ortamında `node tests/smoke.mjs` komutu; gezinme, görev ödülü, mağaza satın alımı, bahçe seçimi, günlük kaydı, sürpriz ödülü ve sıfırlama onayını kontrol eder.
+
