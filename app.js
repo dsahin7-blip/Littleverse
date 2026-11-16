@@ -224,7 +224,7 @@
   function buy(id){const item=itemById(id);if(!item)return;if(state.owned.includes(id)){showToast('Bu parça zaten koleksiyonunda.');return}let bal=item.currency==='crystals'?'crystals':'stars';if(state[bal]<item.price){showToast('Biraz daha yıldız biriktirmen gerek ✨','gold');return}state[bal]-=item.price;state.owned.push(id);grant({xp:8});showToast(`${item.name} koleksiyonuna eklendi!`);render()}
   function equip(id){const item=itemById(id);if(!item||!state.owned.includes(id))return;state.equipped[item.kind]=id;save();showToast(`${item.name} seçildi ✦`);render()}
   function visitWorld(id){const w=WORLDS.find(w=>w.id===id);if(!w)return;if(w.unlockLevel&&state.level<w.unlockLevel){showToast(`${w.title} ${w.requirement} olduğunda açılacak.`,`gold`);return}if(!state.visited.includes(id)){state.visited.push(id);incrementQuest('world');grant({stars:10,xp:12});showToast(`${w.title} keşfedildi! +10 yıldız`)}else showToast(`${w.title}’e tekrar hoş geldin ☾`);save();render()}
-  function reset(){closeModal();state=freshState();save();render();showToast('Dünyan yeni bir başlangıca hazır.')}
+  function reset(){closeModal();state=freshState();characterDraft=null;save();render();showToast('Dünyan yeni bir başlangıca hazır.')}
   function onAction(action){
     if(action.startsWith('route:')){navigate(action.split(':')[1]);return}
     if(action.startsWith('claim-quest:')){awardQuest(action.split(':')[1]);return}
@@ -282,9 +282,9 @@
       }
       cloud={enabled:true,userId:sess.user.id,accessToken:sess.access_token,syncing:false};
       const res=await fetch(conf.url+`/rest/v1/player_saves?user_id=eq.${encodeURIComponent(cloud.userId)}&select=state`,{headers:{'apikey':conf.anonKey,'Authorization':'Bearer '+cloud.accessToken}});
-      if(res.ok){const rows=await res.json();if(rows[0]?.state){state=normalizeState({...freshState(),...rows[0].state});save() }else await cloudSave()}
+      if(res.ok){const rows=await res.json();if(rows[0]?.state){state=normalizeState({...freshState(),...rows[0].state});characterDraft=null;save() }else await cloudSave()}
       else throw new Error('Kayıt tablosuna erişilemedi');
-      setStatus('Bulutla eşitleniyor',true);if(route==='settings')render();
+      setStatus('Bulutla eşitleniyor',true);if(route==='settings'||route==='character')render();
     }catch(err){cloud.enabled=false;setStatus('Bu cihazda saklanıyor');console.info('Littleverse cloud sync unavailable:',err.message)}
   }
   let cloudTimer;
