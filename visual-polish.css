@@ -1,16 +1,53 @@
 /* Littleverse art direction: a visual-only finishing layer over existing components. */
 :root {
-  --lv-ink: #22243d;
-  --lv-violet: #493866;
-  --lv-lavender: #b9a5e8;
-  --lv-rose: #e9c6d7;
-  --lv-ivory: #fff9f1;
-  --lv-night: #22243d;
-  --lv-gold: #d9bb80;
-  --lv-outline: rgba(73, 56, 102, .12);
-  --lv-glaze: linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,249,241,.72));
-  --lv-shadow: 0 18px 48px rgba(47, 37, 67, .09), 0 2px 8px rgba(47, 37, 67, .035);
+  /* Brand palette */
+  --ink: #29223F;
+  --muted: #6F6878;
+  --purple: #B9A7E8;
+  --purple-dark: #29223F;
+  --lav: #D9D0F2;
+  --pink: #E8BFD0;
+  --cream: #FFF8EF;
+  --blue: #BFD4EA;
+  --line: #EAE5E8;
+  --white: #FFFCFA;
+  --mint: #C8D7C0;
+  --gold: #D8BC85;
+  --surface: rgba(255,252,250,.96);
+  --surface-raised: #FFFCFA;
+  --surface-soft: #F8F5F8;
+  --stroke: rgba(41,34,63,.12);
+  --accent: #796A99;
+  --accent-strong: #29223F;
+  --text-muted: #6F6878;
+  --shadow: 0 16px 42px rgba(41,34,63,.08);
+  --shadow-soft: 0 7px 22px rgba(41,34,63,.055);
+  --shadow-lift: 0 19px 44px rgba(41,34,63,.13);
+  --radius-xs: 9px;
+  --radius-sm: 13px;
+  --radius-md: 18px;
+  --radius-lg: 23px;
+  --radius-xl: 28px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 22px;
+  --space-6: 30px;
+  --space-7: 40px;
+  --lv-ink: #29223F;
+  --lv-violet: #29223F;
+  --lv-lavender: #B9A7E8;
+  --lv-rose: #E8BFD0;
+  --lv-ivory: #FFF8EF;
+  --lv-night: #29223F;
+  --lv-gold: #D8BC85;
+  --lv-outline: rgba(41,34,63,.12);
+  --lv-glaze: linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,248,239,.72));
+  --lv-shadow: 0 18px 48px rgba(41,34,63,.09), 0 2px 8px rgba(41,34,63,.035);
 }
+
+body { color: var(--ink); }
 
 /* Shared hierarchy and tactile surfaces */
 .page-heading { position: relative; }
@@ -102,4 +139,124 @@
   .world-cover { transition: none; }
 }
 body[data-theme="gece"] { --lv-shadow: 0 18px 48px rgba(7, 6, 20, .25), 0 2px 8px rgba(7, 6, 20, .18); }
+
+/* Shared component language */
+.sidebar {
+  background: linear-gradient(174deg, rgba(255,248,239,.98), rgba(250,247,251,.97) 58%, rgba(248,242,248,.97));
+  border-right-color: rgba(41,34,63,.10);
+}
+.brand-mark { background: linear-gradient(145deg, #B9A7E8, #76678F); }
+.brand-type { color: #29223F; }
+.nav-link { border-radius: 13px; transition: color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease; }
+.nav-link:hover { background: rgba(217,208,242,.48); color: #29223F; }
+.nav-link.active { background: linear-gradient(100deg, rgba(217,208,242,.72), rgba(232,191,208,.34)); color: #29223F; }
+.mobile-nav { border-top-color: rgba(41,34,63,.12); background: rgba(255,252,250,.96); }
+.mobile-nav .nav-link.active { background: linear-gradient(145deg, #D9D0F2, #F7E8ED); color: #29223F; }
+
+.page-heading h1, .welcome-copy h1, .section-row h2, .modal-card h2 {
+  color: #29223F;
+  text-wrap: balance;
+}
+.page-heading p, .section-row p { color: #6F6878; }
+.primary-button, .buy-button, .room-save-button, .set-reward-button {
+  border-color: transparent;
+  background: linear-gradient(140deg, #57496F, #29223F);
+  color: #FFFCFA;
+  box-shadow: 0 7px 18px rgba(41,34,63,.17);
+}
+.primary-button:hover:not(:disabled), .buy-button:hover:not(:disabled),
+.room-save-button:hover:not(:disabled), .set-reward-button:hover:not(:disabled) {
+  background: linear-gradient(140deg, #675680, #38304F);
+  box-shadow: 0 10px 24px rgba(41,34,63,.20);
+}
+.secondary-button { border-color: rgba(41,34,63,.14); color: #514563; }
+.soft-button { background: #F0EBF7; color: #504265; }
+.danger-button { border-color: #E9C5CE; background: #FFF4F4; color: #8A5365; }
+
+input, textarea, select, .market-search, .market-sort, .diary-title-input,
+.diary-editor, .diary-search, .room-layout-save-row input {
+  border-color: #EAE5E8;
+  border-radius: 12px;
+  background-color: #FFFCFA;
+  color: #29223F;
+}
+input:focus, textarea:focus, select:focus, .diary-title-input:focus,
+.diary-editor:focus, .market-search:focus-within, .diary-search:focus-within {
+  border-color: #A797C8;
+  box-shadow: 0 0 0 3px rgba(185,167,232,.22);
+}
+.filter-chip, .room-tab, .avatar-category, .avatar-filter, .room-zone-tab,
+.character-tab, .market-categories button, .event-filter-row button {
+  border-color: rgba(41,34,63,.12);
+  border-radius: 12px;
+  transition: background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.filter-chip.active, .room-tab.active, .avatar-category.active, .avatar-filter.active,
+.room-zone-tab.active, .character-tab.active, .market-categories button.active,
+.event-filter-row button.active {
+  background: #29223F;
+  border-color: #29223F;
+  color: #FFFCFA;
+}
+.currency-pill { border-color: rgba(41,34,63,.10); background: rgba(255,252,250,.90); }
+.progress-track, .quest-meter, .achievement-progress, .collection-completion-track,
+.world-progress-track, .room-milestone-track { background-color: #EAE5E8; }
+.progress-fill, .quest-meter i, .achievement-progress span,
+.collection-completion-track i, .world-progress-track i,
+.room-milestone-track i {
+  background: linear-gradient(90deg, #A995D2, #D9AFC2);
+}
+.world-tag, .world-lock, .market-rarity, .rarity-chip, .diary-private-pill,
+.event-status, .npc-reward-chip { border-color: rgba(41,34,63,.12); }
+.empty-state, .diary-empty-state, .market-empty, .room-shop-empty,
+.room-library-empty, .avatar-empty, .character-empty, .npc-gift-empty,
+.npc-history-empty {
+  border-color: #DCD5DF;
+  background: linear-gradient(135deg, #FFFCFA, #F8F5F8);
+  color: #6F6878;
+}
+.skeleton { background-image: linear-gradient(110deg,#EAE5E8 8%,#F8F5F8 18%,#EAE5E8 33%); }
+.modal-backdrop { background: rgba(41,34,63,.58); }
+.modal-card { border-color: rgba(255,252,250,.82); border-radius: 23px; }
+.toast { border-color: rgba(255,252,250,.16); background: #29223F; }
+.tooltip:hover:after, [data-tooltip]:hover:after { background: #29223F; }
+
+body[data-theme="gece"] {
+  --ink: #F4EFF8;
+  --muted: #C9C1D1;
+  --purple-dark: #D9D0F2;
+  --lav: #514A68;
+  --pink: #554252;
+  --cream: #29223F;
+  --line: rgba(234,229,232,.15);
+  --white: #353049;
+  --mint: #3D5148;
+  --gold: #D8BC85;
+  --surface: rgba(48,44,70,.96);
+  --surface-raised: #302D48;
+  --surface-soft: #39354F;
+  --stroke: rgba(230,216,241,.13);
+  --accent: #C9B8E8;
+  --accent-strong: #D9D0F2;
+  --text-muted: #C1B8CB;
+}
+body[data-theme="gece"] .sidebar { background: rgba(36,35,59,.97); }
+body[data-theme="gece"] .page-heading h1, body[data-theme="gece"] .section-row h2,
+body[data-theme="gece"] .modal-card h2 { color: var(--ink); }
+body[data-theme="gece"] input, body[data-theme="gece"] textarea,
+body[data-theme="gece"] select, body[data-theme="gece"] .market-search,
+body[data-theme="gece"] .market-sort, body[data-theme="gece"] .diary-editor {
+  background-color: #282640;
+  border-color: var(--stroke);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link, .world-card, .world-cover, .stat-card, .quest-card,
+  .achievement-card, .reward-history-card, .setting-row, .diary-entry-card,
+  .npc-card, .room-shop-card, .avatar-choice, .event-card,
+  .primary-button, .secondary-button, .soft-button, .buy-button {
+    transition-duration: .01ms !important;
+  }
+}
 
