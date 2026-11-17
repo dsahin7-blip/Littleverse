@@ -1,0 +1,105 @@
+/* Littleverse art direction: a visual-only finishing layer over existing components. */
+:root {
+  --lv-ink: #22243d;
+  --lv-violet: #493866;
+  --lv-lavender: #b9a5e8;
+  --lv-rose: #e9c6d7;
+  --lv-ivory: #fff9f1;
+  --lv-night: #22243d;
+  --lv-gold: #d9bb80;
+  --lv-outline: rgba(73, 56, 102, .12);
+  --lv-glaze: linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,249,241,.72));
+  --lv-shadow: 0 18px 48px rgba(47, 37, 67, .09), 0 2px 8px rgba(47, 37, 67, .035);
+}
+
+/* Shared hierarchy and tactile surfaces */
+.page-heading { position: relative; }
+.page-heading:after {
+  content: ""; position: absolute; left: 0; bottom: -12px; width: 56px; height: 1px;
+  background: linear-gradient(90deg, var(--lv-gold), rgba(217,187,128,0));
+}
+.section-row { align-items: end; }
+.section-row h2 { letter-spacing: -.025em; }
+.section-row p { max-width: 52ch; }
+.welcome-card, .explore-intro, .season-spotlight, .games-welcome, .friends-intro,
+.market-banner, .diary-quote-card, .achievement-summary, .collection-completion {
+  border-color: rgba(255,255,255,.76);
+}
+.primary-button, .secondary-button, .soft-button, .buy-button, .quest-action,
+.room-save-button, .room-edit-toggle, .event-card-open, .set-reward-button {
+  min-height: 40px; transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.primary-button:hover:not(:disabled), .secondary-button:hover:not(:disabled),
+.soft-button:hover:not(:disabled), .event-card-open:hover:not(:disabled) {
+  transform: translateY(-1px); filter: saturate(1.04);
+}
+.view > :last-child { margin-bottom: 12px; }
+.profile-card, .world-progress-panel, .world-quest-panel, .world-point-card,
+.world-relic, .npc-card, .npc-profile-hero, .npc-dialogue-card, .npc-gift-panel,
+.event-detail, .event-track-card, .season-palette-card, .game-play-panel,
+.mini-game-card, .diary-panel, .diary-compose, .diary-calendar-panel,
+.diary-entry-card, .room-preview-card, .room-shop-panel, .room-shop-card,
+.avatar-stage, .wardrobe-panel, .character-profile-card {
+  box-shadow: var(--lv-shadow);
+}
+
+/* Home and seasonal surfaces */
+.welcome-card { border-radius: 28px; box-shadow: var(--lv-shadow); }
+.season-spotlight { border-radius: 24px; box-shadow: var(--lv-shadow); }
+.season-palette-card, .event-track-card { border-radius: 18px; }
+.stat-card, .quest-card, .achievement-card, .reward-history-card,
+.setting-row, .market-card, .mini-game-card, .npc-card, .world-card,
+.diary-entry-card, .room-shop-card, .avatar-choice, .event-card {
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.stat-card:hover, .achievement-card:hover, .reward-history-card:hover,
+.setting-row:hover, .diary-entry-card:hover, .npc-card:hover,
+.room-shop-card:hover, .avatar-choice:hover, .event-card:hover {
+  transform: translateY(-2px); box-shadow: var(--lv-shadow);
+}
+
+/* World atlas, profile and collection */
+.world-card { border-radius: 21px; }
+.world-cover { filter: saturate(.94); transition: filter .35s ease, transform .45s ease; }
+.world-card:hover .world-cover { filter: saturate(1.06); transform: scale(1.025); }
+.world-hero-detail, .npc-profile-hero, .character-profile-card { overflow: hidden; }
+.world-relic, .world-point-card, .npc-chapter, .npc-history-entry,
+.timeline-entry, .character-set-card { border-radius: 16px; }
+.collection-completion, .achievement-summary { border-radius: 21px; }
+.collectible-card, .item-card, .market-card { border-radius: 18px; }
+.market-card-art, .market-furniture-art, .market-potion-art, .event-card-art,
+.npc-card-art { overflow: hidden; }
+
+/* Private journal and play spaces keep their own distinct tone */
+.diary-compose, .diary-panel, .diary-calendar-panel, .diary-entry-card {
+  border-radius: 21px;
+}
+.diary-quote-card { border-radius: 24px; }
+.diary-mood-option { min-height: 70px; }
+.game-play-panel { border-radius: 24px; }
+.mini-game-card { border-radius: 20px; }
+.room-preview-card, .room-shop-panel, .avatar-stage, .wardrobe-panel {
+  border-radius: 23px;
+}
+.room-preview-header, .room-preview-caption { backdrop-filter: blur(10px); }
+
+/* Responsive rhythm: preserve all existing grid and control behavior. */
+@media (max-width: 900px) {
+  .page-heading:after { bottom: -9px; }
+  .welcome-card, .explore-intro, .season-spotlight, .games-welcome,
+  .friends-intro, .market-banner, .diary-quote-card { border-radius: 20px; }
+}
+@media (max-width: 680px) {
+  .page-heading:after { bottom: -7px; width: 42px; }
+  .section-row { align-items: flex-start; }
+  .section-row p { max-width: 42ch; }
+  .welcome-card, .explore-intro, .season-spotlight, .games-welcome,
+  .friends-intro, .market-banner, .diary-quote-card { border-radius: 18px; }
+  .world-card, .collectible-card, .item-card, .market-card,
+  .mini-game-card, .npc-card, .event-card { border-radius: 15px; }
+  .diary-mood-option { min-height: 58px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-cover { transition: none; }
+}
+
