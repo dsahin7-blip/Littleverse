@@ -391,3 +391,161 @@ body[data-theme="gece"] .market-sort, body[data-theme="gece"] .diary-editor {
 }
 @keyframes home-arrive { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
 
+/* Sanctuary · warm, lived-in rooms and a crafted furniture atelier */
+.room-preview-card {
+  padding: 18px;
+  border-color: rgba(173,145,126,.2);
+  background: linear-gradient(145deg,#FFFCF6,#F8F1EA 72%,#F5EDF0);
+  box-shadow: 0 18px 42px rgba(97,70,56,.10), inset 0 1px rgba(255,255,255,.9);
+}
+.room-preview-header h2, .room-shop-panel-head h2 { color: #51403C; }
+.room-preview-surface {
+  border-color: rgba(160,126,108,.28);
+  background:
+    radial-gradient(ellipse at 55% 20%,rgba(255,244,211,.45),transparent 52%),
+    linear-gradient(180deg,var(--room-wall) 0 67%,#D6B99E 67% 69%,var(--room-floor) 69%);
+  box-shadow: inset 0 0 0 5px rgba(255,249,237,.35), inset 0 -18px 35px rgba(84,58,45,.10), 0 14px 30px rgba(86,60,45,.11);
+}
+.room-shop-panel { border-color: rgba(166,140,165,.18); background: linear-gradient(155deg,#FFFCFA,#F8F4F8 66%,#F6EFE9); }
+.room-shop-card { border-radius: 18px; background: linear-gradient(145deg,#FFFEFC,#F8F4F8); }
+.room-item-art, .room-shop-art { border-radius: 15px; }
+.room-category-chip.active, .room-zone-tab.active { background: #574866; border-color: #574866; }
+.room-editor-toolbar, .room-arrangement-tools { border-color: rgba(116,87,78,.13); background: rgba(255,252,247,.94); }
+.room-object-inspector, .room-progress-card, .room-personal-rating { border-color: rgba(116,87,78,.13); }
+
+/* Explore · each SVG destination keeps its own weather and color story */
+.explore-intro {
+  min-height: 205px; border-color: rgba(255,255,255,.72);
+  background: radial-gradient(circle at 86% 28%,rgba(255,255,255,.58),transparent 19%),linear-gradient(118deg,#E8E2F2,#E6EDF4 56%,#F7EBE9);
+  box-shadow: 0 18px 44px rgba(44,39,65,.08);
+}
+.explore-intro-art { filter: drop-shadow(0 10px 20px rgba(56,45,77,.12)); }
+.explore-world-grid { gap: 16px; }
+.world-card { min-height: 260px; border-radius: 22px; box-shadow: 0 15px 35px rgba(29,31,48,.18); }
+.world-cover { inset: 0; }
+.world-cover svg { transition: transform .6s cubic-bezier(.2,.7,.2,1),filter .4s ease; }
+.world-card:hover .world-cover svg { transform: scale(1.045); }
+.world-cover-glow { opacity: .48; }
+.world-cover.art-forest .world-cover-glow { background: radial-gradient(circle at 68% 26%,rgba(236,255,181,.58),transparent 32%),linear-gradient(0deg,rgba(20,51,42,.16),transparent 56%); }
+.world-cover.art-city .world-cover-glow { background: radial-gradient(circle at 76% 18%,rgba(206,199,255,.48),transparent 28%),linear-gradient(0deg,rgba(32,34,73,.25),transparent 66%); }
+.world-cover.art-crystal .world-cover-glow { background: radial-gradient(circle at 47% 42%,rgba(213,252,255,.62),transparent 33%),linear-gradient(0deg,rgba(45,67,107,.16),transparent 65%); }
+.world-cover.art-coast .world-cover-glow { background: radial-gradient(circle at 76% 21%,rgba(255,221,181,.55),transparent 30%),linear-gradient(0deg,rgba(80,116,143,.12),transparent 68%); }
+.world-cover.art-kingdom .world-cover-glow { background: radial-gradient(circle at 50% 25%,rgba(255,223,157,.46),transparent 32%),linear-gradient(0deg,rgba(53,38,87,.2),transparent 65%); }
+.world-cover.art-village .world-cover-glow { background: radial-gradient(circle at 71% 22%,rgba(255,238,191,.55),transparent 29%),linear-gradient(0deg,rgba(70,88,60,.12),transparent 66%); }
+.world-card-progress { box-shadow: 0 0 12px rgba(255,255,255,.28); }
+.world-point-card, .world-relic { background: linear-gradient(145deg,#FFFCFA,#F7F3F8); }
+
+/* Character studio · keep the portrait dominant and the wardrobe readable */
+.character-builder { grid-template-columns: minmax(320px,.92fr) minmax(0,1.35fr); gap: 21px; }
+.avatar-stage {
+  min-height: 590px;
+  border-color: rgba(255,255,255,.88);
+  background:
+    radial-gradient(ellipse at 52% 40%,rgba(255,255,255,.9),transparent 34%),
+    radial-gradient(ellipse at 12% 90%,rgba(200,215,192,.35),transparent 39%),
+    linear-gradient(160deg,#E9E2F4,#F5E8EE 59%,#FFF3E3);
+  box-shadow: 0 22px 54px rgba(56,43,76,.12),inset 0 1px rgba(255,255,255,.9);
+}
+.avatar-illustration { filter: drop-shadow(0 16px 20px rgba(73,56,102,.12)); }
+.wardrobe-panel { padding: 22px; border-color: rgba(73,56,102,.10); background: linear-gradient(150deg,#FFFEFC,#F9F6FB 75%,#FBF4F2); }
+.wardrobe-heading h2 { font: 600 24px/1.2 var(--serif); }
+.avatar-categories { gap: 8px; }
+.avatar-category, .avatar-filter { border-radius: 13px; }
+.avatar-choice { min-height: 86px; border-radius: 16px; background: linear-gradient(140deg,#FFFEFC,#F6F2F8); }
+.avatar-choice-art { border-radius: 13px; }
+.avatar-choice.selected { box-shadow: 0 0 0 2px #796A99,0 9px 23px rgba(73,56,102,.10); }
+.character-tabs { border-bottom-color: rgba(73,56,102,.11); }
+.character-tab { min-height: 42px; }
+
+/* Collection · a quiet gallery with rarity-specific light */
+.collection-completion {
+  padding: 18px 21px; border-color: rgba(159,137,177,.16);
+  background: radial-gradient(circle at 92% 12%,rgba(255,255,255,.86),transparent 24%),linear-gradient(112deg,#EFE8F7,#F9EDF0 62%,#F8F0E2);
+  box-shadow: 0 15px 36px rgba(58,45,75,.07);
+}
+.collection-completion-track { height: 8px; border-radius: 99px; }
+.collection-completion-track i { border-radius: inherit; }
+.collection-completion + .market-grid { gap: 15px; }
+.collection-completion + .market-grid .market-card { border-radius: 20px; box-shadow: 0 10px 27px rgba(43,37,57,.07); }
+.collection-completion + .market-grid .market-card-art { min-height: 158px; background: radial-gradient(circle at 50% 46%,#fff 0 20%,transparent 21%),linear-gradient(145deg,#F0EAF7,#F8EEF0 62%,#F7F0E4); }
+.market-rarity, .rarity-chip { letter-spacing: .04em; font-weight: 700; }
+.market-card.market-owned { border-color: rgba(141,171,139,.30); }
+.market-empty { min-height: 180px; }
+
+/* Quests · illustrated journal pages with a distinct rhythm per cadence */
+.reward-balance-strip { border-radius: 18px; background: linear-gradient(110deg,#F2ECF7,#FFF8EF); }
+.quest-section { position: relative; margin: 23px 0 29px; padding: 19px; border: 1px solid rgba(153,132,165,.15); border-radius: 22px; background: linear-gradient(145deg,#FFFCFA,#F8F4F8); box-shadow: 0 13px 32px rgba(52,43,67,.055); }
+.quest-section:before { content: "✧"; position: absolute; top: 14px; right: 17px; color: rgba(164,143,189,.34); font: 25px Georgia,serif; pointer-events: none; }
+.quest-section .section-row { position: relative; z-index: 1; }
+.quest-section .quest-card { border-color: rgba(73,56,102,.09); border-radius: 16px; background: rgba(255,255,255,.82); }
+.quest-section .quest-complete { border-color: rgba(139,174,140,.28); background: linear-gradient(110deg,#FFFEFC,#F0F6EF); }
+.seasonal-quests .quest-card { background: linear-gradient(110deg,#FFFCF7,#F7F2F8); }
+.quest-footer-grid { gap: 12px; }
+.quest-footer-grid > * { border-radius: 17px; }
+
+/* Diary · paper, ink, and calm pastel mood markers */
+.diary-compose { border-color: rgba(157,128,142,.17); background: linear-gradient(145deg,#FFFCF8,#FBF6F0 53%,#F8F3F7); box-shadow: 0 17px 39px rgba(73,56,73,.07); }
+.diary-compose:before { border-radius: inherit; opacity: .23; }
+.diary-calendar-panel { border-color: rgba(157,128,142,.15); background: linear-gradient(150deg,#FFFCF8,#F8F4F8); }
+.diary-day.today { box-shadow: inset 0 0 0 1px rgba(121,106,153,.3); }
+.diary-entry-card { border-color: rgba(157,128,142,.14); background: linear-gradient(145deg,#FFFEFB,#FAF6F3); }
+.diary-entry-card.sample-entry { background: linear-gradient(145deg,#FFFDF8,#F9F3F7); }
+.diary-mood-option.active { border-color: rgba(121,106,153,.30); box-shadow: 0 7px 18px rgba(98,75,120,.09); }
+.diary-toolbar { background: #FFFDF9; }
+.diary-editor { background: repeating-linear-gradient(180deg,#FFFEFC 0 31px,#F5EFF0 32px,#FFFEFC 33px); line-height: 1.9; }
+.diary-private-pill { background: rgba(255,252,248,.9); }
+
+/* Mini games · dusk arcade with distinct game portals */
+.game-center-wrap { position: relative; padding: 21px; border: 1px solid rgba(255,255,255,.74); border-radius: 26px; background: radial-gradient(ellipse at 50% 0%,rgba(217,208,242,.42),transparent 34%),linear-gradient(150deg,#F1ECF8,#FBF4F3 62%,#F6F1E6); box-shadow: 0 18px 42px rgba(51,42,70,.075); }
+.games-center-top, .games-welcome { border-radius: 22px; }
+.mini-game-grid { gap: 14px; }
+.mini-game-card { border-color: rgba(73,56,102,.10); border-radius: 20px; background: linear-gradient(145deg,#FFFEFC,#F8F4FA); box-shadow: 0 9px 25px rgba(48,39,64,.06); }
+.mini-game-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(48,39,64,.12); }
+.mini-game-art { border-radius: 17px; background: radial-gradient(circle at 50% 44%,#fff 0 20%,transparent 21%),linear-gradient(145deg,#EAE4F5,#F8EBF1); }
+.game-play-panel { border-radius: 25px; background: linear-gradient(150deg,#FFFEFC,#F7F3FA); }
+.game-result-banner { border-radius: 18px; }
+
+/* Shop · curated boutique, clear prices and confident purchase controls */
+.market-banner { border-color: rgba(255,255,255,.82); background: radial-gradient(circle at 84% 32%,rgba(255,255,255,.7),transparent 19%),linear-gradient(112deg,#EAE4F5,#F7E9EF 60%,#FFF2E3); }
+.market-banner-art { filter: drop-shadow(0 12px 22px rgba(66,49,78,.12)); }
+.market-tools { padding: 11px; border: 1px solid rgba(73,56,102,.08); border-radius: 18px; background: rgba(255,252,250,.82); }
+.market-categories .filter-chip { min-height: 40px; }
+.market-grid .market-card { border-radius: 19px; }
+.market-grid .market-card-art { min-height: 160px; }
+.market-card-copy { padding: 16px; }
+.market-card-copy h3 { font: 600 16px/1.25 var(--serif); }
+.market-price { padding: 6px 9px; border-radius: 99px; background: #F5EFE5; }
+.buy-button { min-height: 42px; border-radius: 12px; }
+
+/* Achievements · a ceremonial gallery with visible progress and states */
+.achievement-summary { padding: 18px 20px; border: 1px solid rgba(216,188,133,.28); border-radius: 20px; background: radial-gradient(circle at 93% 14%,rgba(255,255,255,.86),transparent 22%),linear-gradient(115deg,#F7F0E2,#F4ECF7 64%,#F9ECEF); }
+.achievement-icon { border: 1px solid rgba(216,188,133,.24); box-shadow: inset 0 1px rgba(255,255,255,.9),0 7px 17px rgba(62,48,72,.07); }
+.achievement-card { border-radius: 19px; background: linear-gradient(145deg,#FFFEFC,#F8F5F9); }
+.achievement-card.unlocked { border-color: rgba(216,188,133,.35); background: linear-gradient(145deg,#FFFCF3,#F7F1E8); }
+.achievement-card.locked { filter: saturate(.78); }
+.achievement-card.badge-ready { box-shadow: 0 0 0 1px rgba(216,188,133,.35),0 13px 30px rgba(76,58,67,.09); }
+.achievement-progress { height: 7px; border-radius: 99px; }
+.achievement-progress span { border-radius: inherit; }
+
+/* Settings · calm, orderly controls without a game-card treatment */
+.setting-list { display: grid; gap: 9px; }
+.setting-row { min-height: 64px; border-radius: 16px; background: rgba(255,252,250,.94); }
+.setting-row > div, .setting-row > label { gap: 5px; }
+.setting-row input[type="range"] { accent-color: #796A99; }
+.setting-row select { min-width: 170px; }
+.economy-security-card { border-color: rgba(121,106,153,.14); background: linear-gradient(145deg,#F3EEF8,#FFFCFA); }
+
+@media (max-width: 760px) {
+  .explore-world-grid { gap: 10px; }
+  .world-card { min-height: 220px; border-radius: 17px; }
+  .character-builder { grid-template-columns: minmax(0,1fr); }
+  .avatar-stage { min-height: 430px; }
+  .wardrobe-panel { padding: 15px; }
+  .quest-section { padding: 13px; border-radius: 18px; }
+  .game-center-wrap { padding: 13px; border-radius: 20px; }
+  .setting-row { align-items: flex-start; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-cover svg, .mini-game-card, .home-collection-item { transition: none !important; }
+}
+
