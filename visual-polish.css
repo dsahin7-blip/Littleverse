@@ -260,3 +260,134 @@ body[data-theme="gece"] .market-sort, body[data-theme="gece"] .diary-editor {
   }
 }
 
+/* Home: an arrival scene with a clear path into today's activities. */
+.home-dashboard { display: grid; gap: 17px; }
+.home-hero-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(270px, .85fr);
+  gap: 15px;
+  align-items: stretch;
+}
+.home-hero-band .welcome-card {
+  min-height: 270px;
+  padding: 34px 36px;
+  border-radius: 27px;
+  background:
+    radial-gradient(ellipse at 75% 12%, rgba(255,255,255,.58), transparent 32%),
+    linear-gradient(118deg, #E8E0F4 0%, #F2E6EF 52%, #FFF1E4 100%);
+  box-shadow: 0 20px 48px rgba(41,34,63,.10), inset 0 1px rgba(255,255,255,.88);
+}
+.home-hero-band .welcome-card:before {
+  width: 310px; height: 310px; right: -1%; top: -130px;
+  background: radial-gradient(circle, rgba(255,255,255,.54), rgba(255,255,255,0) 68%);
+}
+.home-hero-band .welcome-copy { position: relative; z-index: 3; max-width: 54%; }
+.home-hero-band .welcome-copy .eyebrow { color: #78698C; }
+.home-hero-band .welcome-copy h1 { max-width: 440px; font-size: clamp(29px, 3vw, 40px); line-height: 1.11; }
+.home-hero-band .welcome-copy p { max-width: 34ch; font-size: 13px; line-height: 1.7; }
+.home-hero-band .welcome-art { width: 46%; right: 0; }
+.home-hero-band .welcome-moon { width: 108px; height: 108px; color: #B3935D; }
+.home-level-panel { min-width: 0; }
+.home-level-panel .level-card {
+  min-height: 270px; height: 100%; display: flex; flex-direction: column; justify-content: center;
+  padding: 25px; border: 1px solid rgba(255,255,255,.2); border-radius: 25px;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(217,208,242,.24), transparent 27%),
+    radial-gradient(circle at 0% 100%, rgba(232,191,208,.16), transparent 38%),
+    linear-gradient(145deg, #514568, #29223F 78%);
+}
+.home-level-panel .level-card:after { content: "✧"; position: absolute; right: 23px; bottom: 16px; color: rgba(255,255,255,.24); font: 34px Georgia,serif; }
+.home-level-panel .level-top { gap: 14px; }
+.home-level-panel .level-badge { box-shadow: 0 8px 22px rgba(0,0,0,.16); }
+.home-level-panel .level-card > p { max-width: 40ch; margin: 18px 0; line-height: 1.65; }
+.home-level-panel .progress-track { height: 8px; border-radius: 99px; }
+.home-level-panel .progress-fill { border-radius: inherit; }
+.home-dashboard > .season-spotlight {
+  grid-template-columns: minmax(210px, .68fr) minmax(0, 1.32fr);
+  gap: 25px; min-height: 176px; margin: 0; padding: 17px;
+  border-radius: 23px; border-color: rgba(255,255,255,.84);
+  background: linear-gradient(115deg, rgba(255,252,250,.92), rgba(248,245,248,.94));
+  box-shadow: 0 13px 34px rgba(41,34,63,.06);
+}
+.home-dashboard > .season-spotlight .season-art { min-height: 142px; border-radius: 17px; }
+.home-dashboard > .season-spotlight .season-spotlight-copy strong { color: #443852; font-size: 22px; }
+.home-content-grid { grid-template-columns: minmax(0, 1.28fr) minmax(300px, .9fr); gap: 20px; align-items: start; }
+.home-main-column, .home-side-column { min-width: 0; }
+.home-main-column, .home-side-column { display: grid; gap: 13px; }
+.home-main-column .stat-strip { margin-top: 0; }
+.home-main-column .section-row, .home-side-section .section-row { margin: 13px 1px 0; }
+.home-main-column .quest-list { gap: 9px; }
+.home-side-column > .surprise-card { min-height: 116px; padding: 18px; border-radius: 21px; }
+.home-side-column > .surprise-card strong { font: 600 17px/1.3 var(--serif); color: #443852; }
+.home-side-column > .surprise-card p { max-width: 34ch; line-height: 1.55; }
+.home-side-section { min-width: 0; }
+.home-world-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+.home-world-grid .world-card { min-height: 220px; height: auto; border-radius: 18px; }
+.home-collection-list { display: grid; gap: 8px; }
+.home-collection-item {
+  display: flex; align-items: center; gap: 11px; min-width: 0; min-height: 62px;
+  padding: 10px 13px; border: 1px solid rgba(41,34,63,.09); border-radius: 16px;
+  background: linear-gradient(120deg, rgba(255,252,250,.98), rgba(248,245,248,.96));
+  box-shadow: 0 5px 15px rgba(41,34,63,.035); transition: transform .2s ease, box-shadow .2s ease;
+}
+.home-collection-item:hover { transform: translateY(-2px); box-shadow: var(--lv-shadow); }
+.home-collection-icon { display: grid; place-items: center; flex: 0 0 38px; height: 38px; border-radius: 13px; background: linear-gradient(145deg,#F0EBF7,#F9EAF0); font-size: 19px; }
+.home-collection-item > span:nth-child(2) { display: grid; gap: 4px; min-width: 0; flex: 1; }
+.home-collection-item strong { overflow: hidden; color: #383047; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.home-collection-item small { color: #7A7281; font-size: 9px; }
+.home-collection-item i { color: #A491BA; font-style: normal; }
+.home-achievements-panel { padding: 0 0 4px; }
+.home-achievements-panel .section-row { margin-top: 19px; }
+.home-achievement-list { display: grid; gap: 8px; }
+.home-achievement-card {
+  display: flex; align-items: center; gap: 11px; min-width: 0; padding: 11px 13px;
+  border: 1px solid rgba(41,34,63,.09); border-radius: 15px;
+  background: linear-gradient(110deg, #FFFCFA, #F7F3F9);
+}
+.home-achievement-icon { display: grid; place-items: center; flex: 0 0 37px; height: 37px; border-radius: 13px; background: linear-gradient(145deg,#EFE8F8,#F8E9EF); font-size: 18px; }
+.home-achievement-card > div { display: grid; gap: 3px; min-width: 0; flex: 1; }
+.home-achievement-card strong { color: #3A3148; font: 600 12px var(--serif); }
+.home-achievement-card small { overflow: hidden; color: #777080; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.home-achievement-date { flex: none; color: #887D91; font-size: 9px; }
+.home-achievement-empty { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px dashed #DCD5DF; border-radius: 15px; background: #FFFCFA; }
+.home-achievement-empty > span { display: grid; place-items: center; flex: 0 0 38px; height: 38px; border-radius: 13px; background: #F0EBF7; color: #786891; font-size: 20px; }
+.home-achievement-empty > div { display: grid; gap: 4px; }
+.home-achievement-empty strong { color: #3A3148; font: 600 13px var(--serif); }
+.home-achievement-empty small { color: #777080; font-size: 10px; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .home-hero-band { grid-template-columns: minmax(0,1.2fr) minmax(220px,.8fr); }
+  .home-content-grid { grid-template-columns: minmax(0,1.1fr) minmax(260px,.9fr); }
+  .home-hero-band .welcome-card { padding: 28px 25px; }
+  .home-hero-band .welcome-copy { max-width: 58%; }
+  .home-hero-band .welcome-art { width: 48%; }
+}
+@media (max-width: 680px) {
+  .home-dashboard { gap: 13px; }
+  .home-hero-band, .home-content-grid { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .home-hero-band .welcome-card { min-height: 235px; padding: 25px 22px; border-radius: 21px; }
+  .home-hero-band .welcome-copy { max-width: 61%; }
+  .home-hero-band .welcome-copy h1 { font-size: clamp(27px,7vw,34px); }
+  .home-hero-band .welcome-copy p { font-size: 11px; }
+  .home-hero-band .welcome-art { width: 49%; right: -3%; }
+  .home-level-panel .level-card { min-height: 225px; border-radius: 21px; }
+  .home-dashboard > .season-spotlight { grid-template-columns: 145px minmax(0,1fr); gap: 13px; padding: 13px; }
+  .home-dashboard > .season-spotlight .season-art { min-height: 125px; }
+  .home-side-column { gap: 12px; }
+}
+@media (max-width: 520px) {
+  .home-dashboard > .season-spotlight { grid-template-columns: minmax(0,1fr); }
+  .home-dashboard > .season-spotlight .season-art { min-height: 112px; }
+  .home-world-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .home-world-grid .world-card { min-height: 195px; padding-inline: 12px; }
+  .home-main-column .stat-strip { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .home-main-column .stat-card { min-width: 0; padding-inline: 7px; }
+  .home-main-column .stat-card strong { font-size: 14px; }
+  .home-main-column .stat-card small { font-size: 8px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-band { animation: home-arrive .45s ease-out both; }
+  .home-content-grid { animation: home-arrive .55s .06s ease-out both; }
+}
+@keyframes home-arrive { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+
