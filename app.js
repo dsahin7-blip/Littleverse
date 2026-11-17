@@ -343,7 +343,11 @@
     tapsDate:new Date().toLocaleDateString('en-CA'), quizDone:false,gameSound:true,gameDaily:{memoryCompleteDate:'',memoryRewardDate:'',memoryBest:0,memoryBestMoves:0,matchCompleteDate:'',matchRewardDate:'',matchBest:0,quizCompleteDate:'',quizRewardDate:'',quizResult:'',fortuneDate:'',fortuneChoice:-1,fortuneIndex:-1},roomTab:'Yataklar', roomMode:'oda', roomView:'dekorasyon',roomLayouts:JSON.parse(JSON.stringify(ROOM_DEFAULT_LAYOUTS)),roomStyle:JSON.parse(JSON.stringify(ROOM_DEFAULT_STYLE)),roomSelectedItem:null,roomMovingIndex:null,roomQuestUnlocks:[],roomSaved:true,roomSavedLayout:null,roomSavedStyle:null,roomPresets:[],roomFavoritePresets:[],roomSnap:true,roomUndo:[],roomRedo:[],roomRatings:{oda:0,bahçe:0,balkon:0},roomCompletionClaims:{},eventProgress:{},selectedEvent:'',eventFilter:'all',weather:'starry',ambientEffects:true,npcRelationships:JSON.parse(JSON.stringify(NPC_PROGRESS_SEED)),selectedNpc:'',npcWorldFilter:'all',nameChanged:false
   });
   let localCharacterProfilePresent=false;
-  let state = readLocal();
+  let audioContext=null,musicNodes=[];
+  function playUiTone(freq=540,duration=.09){if(!state.sfxEnabled)return;try{audioContext??=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime((state.sfxVolume||35)/100*.035,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+duration);o.connect(g).connect(audioContext.destination);o.start();o.stop(audioContext.currentTime+duration)}catch{}}
+  function stopAmbientAudio(){musicNodes.forEach(n=>{try{n.stop()}catch{}});musicNodes=[]}
+  function startAmbientAudio(){stopAmbientAudio();if(!state.musicEnabled)return;try{audioContext??=new(window.AudioContext||window.webkitAudioContext)();audioContext.resume();for(const [f,delay] of [[174,0],[261,.03],[349,.06]]){const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.value=f;g.gain.value=(state.musicVolume||22)/100*.012;o.connect(g).connect(audioContext.destination);o.start(audioContext.currentTime+delay);musicNodes.push(o)}}catch{}}
+  let state = readLocal();document.body.classList.toggle('low-performance',!!state.lowPerformance);
   if(state.mood==='Meraklı')state.mood='Heyecanlı';
   state.diary=(Array.isArray(state.diary)?state.diary:[]).map(entry=>entry?.mood==='Meraklı'?{...entry,mood:'Heyecanlı',emoji:'✨'}:entry);
   state.avatarOwned=[...new Set([...(state.avatarOwned||[]),...(state.owned||[]).filter(id=>AVATAR_ITEMS.some(item=>item.id===id))])];
@@ -598,6 +602,8 @@
   function reset(){closeModal();state=freshState();characterDraft=null;save();render();showToast('Dünyan yeni bir başlangıca hazır.')}
   function onAction(action){
     if(action==='npc-back'){state.selectedNpc='';save();render();return}
+    if(action==='toggle-music'){state.musicEnabled=!state.musicEnabled;if(state.musicEnabled)startAmbientAudio();else stopAmbientAudio();save();render();return}
+    if(action==='toggle-sfx'){state.sfxEnabled=!state.sfxEnabled;if(state.sfxEnabled)playUiTone(640,.07);save();render();return}
     if(action==='toggle-ambient-effects'){state.ambientEffects=state.ambientEffects===false;save();render();showToast(state.ambientEffects?'Ortam efektleri açıldı.':'Ortam efektleri kapatıldı.');return}
     if(action==='event-back'){state.selectedEvent='';save();render();return}
     if(action==='event-seasonal-shop'){shopFilter='Mevsimlik';state.selectedEvent='';save();navigate('shop');return}
@@ -655,6 +661,7 @@
     if(action==='modal-confirm'){const fn=$('#modal-root')._confirm;fn?.()}
   }
   document.addEventListener('click',e=>{
+    if(e.target.closest('button')&&!e.target.closest('[data-action="toggle-sfx"],[data-action="toggle-music"]'))playUiTone(560,.055);
     const npcOpen=e.target.closest('[data-npc-open]');if(npcOpen){state.selectedNpc=npcOpen.dataset.npcOpen;save();navigate('friends');return}
     const npcTalk=e.target.closest('[data-npc-talk]');if(npcTalk){const [id,index]=npcTalk.dataset.npcTalk.split('|');talkNpc(id,Number(index));return}
     const npcStory=e.target.closest('[data-npc-story]');if(npcStory){const [id,index]=npcStory.dataset.npcStory.split('|');readNpcStory(id,Number(index));return}
@@ -725,6 +732,9 @@
   const finishRoomDrag=e=>{if(!roomDragging||e&&roomDragging.pointerId!==e.pointerId)return;const changed=roomDragging.changed;roomDragging=null;if(changed){track('decorations');state.roomSaved=false;save();render()}};
   document.addEventListener('pointerup',finishRoomDrag);document.addEventListener('pointercancel',finishRoomDrag);
   document.addEventListener('change',e=>{
+    if(e.target.id==='music-volume'){state.musicVolume=Number(e.target.value);if(state.musicEnabled)startAmbientAudio();save()}
+    if(e.target.id==='sfx-volume'){state.sfxVolume=Number(e.target.value);save()}
+    if(e.target.id==='low-performance'){state.lowPerformance=e.target.checked;document.body.classList.toggle('low-performance',state.lowPerformance);save()}
     if(e.target.id==='save-import-file'){const file=e.target.files?.[0];if(file)modal('Yedek yüklensin mi?','Mevcut ilerlemenin geri dönüş kopyası önce saklanacak. Oyuncu bakiyesi ve envanter sunucudaki kayıtla korunur.','Yedeği yükle',()=>{closeModal();importSave(file);e.target.value=''});return}
     if(e.target.id==='season-weather'){if(WEATHER.some(w=>w[0]===e.target.value)){state.weather=e.target.value;save();render();showToast(`Hava durumu ${WEATHER.find(w=>w[0]===state.weather)?.[1].toLocaleLowerCase('tr-TR')} oldu.`)}}
     if(e.target.id==='diary-filter'){diaryFilter=e.target.value;render()}
@@ -778,6 +788,7 @@
   if(state.tapsDate!==new Date().toLocaleDateString('en-CA')){state.tapsToday=0;state.tapsDate=new Date().toLocaleDateString('en-CA')}
   render();save();cloudInit();
 })();
+
 
 
 
