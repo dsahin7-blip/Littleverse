@@ -2,3 +2,53 @@
 :root{--motion-fast:160ms;--motion-gentle:420ms;--motion-ease:cubic-bezier(.22,.7,.25,1)}
 #view{animation:page-arrive var(--motion-gentle) var(--motion-ease) both}.stat-card,.quest-card,.world-card,.npc-card,.item-card,.achievement-card{animation:card-arrive .45s var(--motion-ease) both;transition:transform .2s ease,box-shadow .2s ease}.stat-card:hover,.quest-card:hover,.npc-card:hover,.item-card:hover{transform:translateY(-2px)}button{transition:transform var(--motion-fast) ease,filter var(--motion-fast) ease,box-shadow var(--motion-fast) ease}button:active{transform:scale(.98)}.toast{animation:reward-glow .5s ease-out both}.modal-card{animation:chest-open .28s var(--motion-ease) both}.low-performance *,body.low-performance *:before,body.low-performance *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important} @keyframes page-arrive{from{opacity:.7;transform:translateY(5px)}to{opacity:1;transform:none}}@keyframes card-arrive{from{opacity:.65;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes reward-glow{0%{opacity:0;transform:translateY(8px) scale(.98)}60%{box-shadow:0 0 26px #e8cf8b55}100%{opacity:1;transform:none}}@keyframes chest-open{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
+/* Refined motion pass: short movement, clear states, and effects only on real rendered state changes. */
+:root {
+  --motion-gentle: 300ms;
+  --motion-ease: cubic-bezier(.2,.72,.24,1);
+}
+#view { animation: page-arrive 280ms var(--motion-ease) both; }
+.stat-card,.quest-card,.world-card,.npc-card,.item-card,.achievement-card {
+  animation-duration: 260ms;
+  transition: transform 220ms var(--motion-ease), box-shadow 220ms var(--motion-ease), border-color 220ms ease, background-color 220ms ease;
+}
+.stat-card:hover,.quest-card:hover,.npc-card:hover,.item-card:hover { transform: translateY(-2px); }
+.world-card,.mini-game-card,.market-card,.room-shop-card,.avatar-choice,.world-point-card,.diary-entry-card {
+  transition: transform 220ms var(--motion-ease), box-shadow 220ms var(--motion-ease), border-color 220ms ease, filter 220ms ease;
+}
+.world-card:active,.mini-game-card:active,.market-card:active,.room-shop-card:active { transform: translateY(-1px) scale(.995); }
+.world-card.world-locked:hover { filter: brightness(1.045); }
+.avatar-choice,.room-item,.market-categories button,.avatar-category,.avatar-filter,.filter-chip {
+  transition: transform 180ms var(--motion-ease), background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+.avatar-choice.selected,.room-item.selected,[aria-pressed="true"] { transition-duration: 180ms; }
+.primary-button:hover:not(:disabled),.secondary-button:hover:not(:disabled),.soft-button:hover:not(:disabled),.quest-action:hover:not(:disabled),.room-save-button:hover:not(:disabled),.room-buy-button:hover:not(:disabled),.buy-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+button:active:not(:disabled) { transition-duration: 90ms; }
+button:disabled,[aria-disabled="true"] { transform: none !important; transition: opacity 160ms ease, filter 160ms ease; }
+.progress-fill,.quest-meter i,.achievement-progress span,.world-progress-track i,.event-progress i { transition: width 420ms var(--motion-ease); }
+.quest-complete,.badge-ready,.achievement-card.unlocked,.game-result-banner,.mystery-reward-reveal,.fortune-reveal-card.revealed,.event-mission.is-claimed {
+  animation: gentle-arrive 320ms var(--motion-ease) both;
+}
+.avatar-choice.selected,.avatar-item.equipped,.wardrobe-item.equipped { animation: selected-glimmer 240ms var(--motion-ease) both; }
+.modal-backdrop { animation: backdrop-appear 180ms ease-out both; }
+.modal-card { animation-duration: 240ms; }
+.toast { animation-duration: 320ms; }
+.toast.gold { border: 1px solid rgba(255,229,173,.26); box-shadow: 0 10px 28px rgba(68,48,37,.22); }
+.star-target { animation: target-drift 3.6s ease-in-out 2 both; }
+@keyframes page-arrive { from { opacity: .86; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+@keyframes card-arrive { from { opacity: .88; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes gentle-arrive { from { opacity: .82; transform: translateY(3px) scale(.995); } to { opacity: 1; transform: none; } }
+@keyframes selected-glimmer { from { filter: brightness(1.035); } to { filter: none; } }
+@keyframes backdrop-appear { from { opacity: 0; } to { opacity: 1; } }
+@keyframes target-drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@media (hover: none) {
+  .stat-card:hover,.quest-card:hover,.npc-card:hover,.item-card:hover,.world-card:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #view,.stat-card,.quest-card,.world-card,.npc-card,.item-card,.achievement-card,.quest-complete,.badge-ready,.achievement-card.unlocked,.game-result-banner,.mystery-reward-reveal,.fortune-reveal-card.revealed,.event-mission.is-claimed,.avatar-choice.selected,.avatar-item.equipped,.wardrobe-item.equipped,.modal-backdrop,.modal-card,.toast,.star-target { animation: none !important; }
+  .stat-card,.quest-card,.world-card,.npc-card,.item-card,.achievement-card,.mini-game-card,.market-card,.room-shop-card,.avatar-choice,.world-point-card,.diary-entry-card,button { transition: none !important; }
+}
+
+:focus-visible{outline:3px solid #72599c!important;outline-offset:3px;border-radius:6px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{box-shadow:0 0 0 3px #b9a5e888!important}@media(forced-colors:active){:focus-visible{outline:2px solid Highlight!important}}

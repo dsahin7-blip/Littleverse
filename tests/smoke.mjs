@@ -7,7 +7,7 @@ const node = key => {
   if (!nodes.has(key)) nodes.set(key, {innerHTML:'',textContent:'',value:'',dataset:{},addEventListener(){},classList:{add(){},remove(){},contains(){return false}}});
   return nodes.get(key);
 };
-const document = {body:{dataset:{}},querySelector:node,querySelectorAll:()=>[],createElement:()=>({innerHTML:'',childNodes:[],get textContent(){return this.innerHTML.replace(/<[^>]*>/g,' ')},get innerText(){return this.textContent}}),addEventListener:(name,fn)=>{listeners[name]=fn}};
+const document = {body:{dataset:{},classList:{toggle(){}}},querySelector:node,querySelectorAll:()=>[],createElement:()=>({innerHTML:'',childNodes:[],get textContent(){return this.innerHTML.replace(/<[^>]*>/g,' ')},get innerText(){return this.textContent}}),addEventListener:(name,fn)=>{listeners[name]=fn}};
 const localStorage = {getItem:key=>data.get(key)||null,setItem:(key,value)=>data.set(key,value)};
 const context = {document,localStorage,location:{hash:'#home',search:'',hostname:'littleverse.test'},history:{replaceState(_a,_b,url){context.location.hash=url}},window:{addEventListener(){},scrollTo(){}},Intl,Date,JSON,Math,console,setTimeout:()=>1,clearTimeout(){},URLSearchParams};
 vm.runInNewContext(fs.readFileSync('app.js','utf8'),context,{filename:'app.js'});
@@ -26,6 +26,10 @@ const routes = [['sanctuary','Sığınağım'],['explore','Dünyaları Keşfet']
 for (const [route,title] of routes) {
   click(route);
   assert.match(node('#view').innerHTML,new RegExp(title),'route '+route+' renders');
+  if (route==='character') {
+    assert.match(node('#view').innerHTML,/linearGradient id="avatar-skin-/,'character preview renders its data-driven shaded SVG');
+    assert.match(node('#view').innerHTML,/Kuşanıldı/,'equipped character options are clearly identified');
+  }
 }
 click('quests');
 assert.match(node('#view').innerHTML,/5 görev|Beş küçük adım/,'daily quest list renders');

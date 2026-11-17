@@ -1,0 +1,46 @@
+/* Responsive safety refinements shared by existing Littleverse routes. */
+.app-shell, .main-area, .view, #view { min-width: 0; }
+.sidebar { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.primary-nav, .sidebar-bottom { min-width: 0; }
+.dashboard-layout > *, .home-hero-band > *, .home-content-grid > *, .room-workspace > *,
+.world-detail-grid > *, .character-builder > *, .character-profile-layout > *,
+.diary-layout > *, .friends-layout > *, .market-grid > *, .mini-game-grid > * { min-width: 0; }
+img, svg, video, canvas { max-width: 100%; }
+.page-heading > div, .section-row > div, .market-card-copy, .quest-info, .diary-entry-content { min-width: 0; }
+.page-heading h1, .section-row h2, .market-card-copy h3, .quest-info strong { overflow-wrap: anywhere; }
+
+/* Dialogs remain reachable on short screens and scroll internally when content is tall. */
+.modal-backdrop { max-height: 100vh; max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain; }
+.modal-card { max-height: calc(100vh - 36px); max-height: calc(100dvh - 36px); overflow-y: auto; overscroll-behavior: contain; }
+
+@media (min-width: 681px) and (max-width: 760px) {
+  .home-hero-band, .home-content-grid { grid-template-columns: minmax(0,1fr); }
+  .home-hero-band .welcome-card { min-height: 220px; }
+  .home-hero-band .welcome-copy { max-width: 60%; }
+}
+
+@media (max-width: 680px) {
+  .modal-backdrop { align-items: start; padding: max(10px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom)); }
+  .modal-card { width: min(440px, 100%); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); margin: auto; }
+  .modal-actions { flex-wrap: wrap; }
+  .modal-actions > button { flex: 1 1 120px; }
+  .room-editor-toolbar button, .room-arrangement-tools button, .room-object-tools button,
+  .room-saved-layout button, .room-theme-card { min-height: 40px; }
+  .diary-month-controls button { width: 36px; height: 36px; }
+  .page-heading { min-width: 0; }
+  .page-heading .date-chip { flex: 0 0 auto; max-width: 45%; overflow: hidden; text-overflow: ellipsis; }
+}
+
+@media (max-width: 390px) {
+  .modal-card { padding: 16px; }
+  .modal-actions > button { flex-basis: 100%; }
+  .home-hero-band .welcome-card { padding-inline: 17px; }
+  .home-hero-band .welcome-copy { max-width: 65%; }
+  .room-editor-toolbar { align-items: stretch; }
+  .room-editor-toolbar button { flex: 1 1 auto; }
+}
+
+@media (max-height: 560px) {
+  .modal-backdrop { place-items: start center; }
+  .modal-card { margin-block: auto; }
+}
