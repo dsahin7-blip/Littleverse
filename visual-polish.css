@@ -15,7 +15,7 @@
 /* Shared hierarchy and tactile surfaces */
 .page-heading { position: relative; }
 .page-heading:after {
-  content: ""; position: absolute; left: 0; bottom: -12px; width: 56px; height: 1px;
+  content: ""; display: block; position: absolute; left: 0; bottom: -12px; width: 56px; height: 1px;
   background: linear-gradient(90deg, var(--lv-gold), rgba(217,187,128,0));
 }
 .section-row { align-items: end; }
@@ -33,7 +33,6 @@
 .soft-button:hover:not(:disabled), .event-card-open:hover:not(:disabled) {
   transform: translateY(-1px); filter: saturate(1.04);
 }
-.view > :last-child { margin-bottom: 12px; }
 .profile-card, .world-progress-panel, .world-quest-panel, .world-point-card,
 .world-relic, .npc-card, .npc-profile-hero, .npc-dialogue-card, .npc-gift-panel,
 .event-detail, .event-track-card, .season-palette-card, .game-play-panel,
@@ -102,4 +101,5 @@
 @media (prefers-reduced-motion: reduce) {
   .world-cover { transition: none; }
 }
+body[data-theme="gece"] { --lv-shadow: 0 18px 48px rgba(7, 6, 20, .25), 0 2px 8px rgba(7, 6, 20, .18); }
 
