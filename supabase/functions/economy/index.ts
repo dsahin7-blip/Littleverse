@@ -20,14 +20,20 @@ Deno.serve(async (req: Request) => {
 
   let body: { action?: string; payload?: Record<string, unknown> };
   try { body = await req.json(); } catch { return new Response(JSON.stringify({ error: "INVALID_JSON" }), { status: 400, headers: cors }); }
-  const actions = new Set(["initialize", "snapshot", "history", "purchase", "reward", "claim", "event", "equip"]);
+  const actions = new Set(["initialize", "snapshot", "history", "purchase", "reward", "claim", "event", "equip", "gift"]);
   if (!body.action || !actions.has(body.action)) return new Response(JSON.stringify({ error: "INVALID_ACTION" }), { status: 400, headers: cors });
 
   try {
-    const response = await fetch(`${projectUrl}/rest/v1/rpc/littleverse_economy`, {
+    const endpoint = body.action === "gift"
+      ? `${projectUrl}/rest/v1/rpc/littleverse_npc_gift`
+      : `${projectUrl}/rest/v1/rpc/littleverse_economy`;
+    const rpcBody = body.action === "gift"
+      ? { p_npc_id: body.payload?.npc_id, p_item_id: body.payload?.item_id }
+      : { p_action: body.action, p_payload: body.payload ?? {} };
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: { apikey: publishableKey, Authorization: authorization, "Content-Type": "application/json" },
-      body: JSON.stringify({ p_action: body.action, p_payload: body.payload ?? {} }),
+      body: JSON.stringify(rpcBody),
     });
     const text = await response.text();
     let result: unknown;
@@ -37,3 +43,4 @@ Deno.serve(async (req: Request) => {
     return new Response(JSON.stringify({ error: "ECONOMY_UNAVAILABLE" }), { status: 503, headers: cors });
   }
 });
+
